@@ -1,6 +1,6 @@
 # ProcessScheduler
 Developing a basic process scheduler that receives a file containing sample processes and generates a schedule according to one of the three schedule types:
-irst-Come, First-Serve (FCFS), 
+First-Come, First-Serve (FCFS), 
 Shortest-Job-First (SJF) preemptive
 SJF Priority (always preemptive)
 Round-robin (RR). 
