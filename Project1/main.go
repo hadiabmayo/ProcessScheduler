@@ -1,3 +1,4 @@
+// EUID : 11469987
 package main
 
 import (
@@ -127,8 +128,7 @@ func openProcessingFile(args ...string) (*os.File, func(), error) {
 	return f, closeFn, nil
 }
 
-//region Output helpers
-
+// region Output helpers
 func outputTitle(w io.Writer, title string) {
 	_, _ = fmt.Fprintln(w, strings.Repeat("-", len(title)*2))
 	_, _ = fmt.Fprintln(w, strings.Repeat(" ", len(title)/2), title)

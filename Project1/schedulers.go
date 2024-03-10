@@ -1,5 +1,5 @@
-//Intro to OS- Project 1 - Schedulers 
-
+// Intro to OS- Project 1 - Schedulers
+// EUID: 11469987
 package main
 
 import (
@@ -28,12 +28,13 @@ type (
 // • an output writer
 // • a title for the chart
 // • a slice of processes
+// Print a simple string
 
 // function for implementing FCFS schedule
 func FCFSSchedule(w io.Writer, title string, processes []Process) {
 	//defining variables
 	var (
-		//intializing variables 
+		//intializing variables
 		serviceTime     int64
 		totalWait       float64
 		totalTurnaround float64
@@ -82,7 +83,9 @@ func FCFSSchedule(w io.Writer, title string, processes []Process) {
 	outputTitle(w, title)
 	outputGantt(w, gantt)
 	outputSchedule(w, schedule, aveWait, aveTurnaround, aveThroughput)
+
 }
+
 // function for implementing SJF schedule
 func SJFSchedule(w io.Writer, title string, processes []Process) {
 	//defining variables
@@ -118,8 +121,8 @@ func SJFSchedule(w io.Writer, title string, processes []Process) {
 		completion := processes[i].BurstDuration + processes[i].ArrivalTime + waitingTime
 		lastCompletion = float64(completion)
 		// acess ith element of array i.e schedule in this case
-		schedule[i] = []string{   // []string to initialize new slice of strings
-			fmt.Sprint(processes[i].ProcessID),  //fmt.sprint takes different types of data and constructs a string,  without converting each value to string.
+		schedule[i] = []string{ // []string to initialize new slice of strings
+			fmt.Sprint(processes[i].ProcessID), //fmt.sprint takes different types of data and constructs a string,  without converting each value to string.
 			fmt.Sprint(processes[i].Priority),
 			fmt.Sprint(processes[i].BurstDuration),
 			fmt.Sprint(processes[i].ArrivalTime),
@@ -129,11 +132,11 @@ func SJFSchedule(w io.Writer, title string, processes []Process) {
 		}
 		//adding i-th process's duration to total serviceTime and assigning it back to serviceTime
 		serviceTime += processes[i].BurstDuration
-		//scheduling tasks 
+		//scheduling tasks
 		gantt = append(gantt, TimeSlice{
-			PID:   processes[i].ProcessID,  //task ID
-			Start: starting,  //start time of task
-			Stop:  serviceTime,  //end time
+			PID:   processes[i].ProcessID, //task ID
+			Start: starting,               //start time of task
+			Stop:  serviceTime,            //end time
 		})
 	}
 
@@ -144,23 +147,24 @@ func SJFSchedule(w io.Writer, title string, processes []Process) {
 
 	outputTitle(w, title)
 	outputGantt(w, gantt)
-	//output schedule 
+	//output schedule
 	outputSchedule(w, schedule, averageWait, averageTurnaround, averageThroughput)
 }
- // function for implementing SJF schedule
+
+// function for implementing SJF schedule
 func SJFPrioritySchedule(w io.Writer, title string, processes []Process) {
 	//defining variables for SJF schedule
 	var (
 		//intializing variables to integer
-		serviceTime     int64
-		waitingTime     int64
+		serviceTime int64
+		waitingTime int64
 		//intializing variables to float
 		totalTurnaround float64
 		totalWait       float64
 		lastCompletion  float64
 		//initializing schedule with result of // Intializing processes with slice of strings
-		schedule        = make([][]string, len(processes)) 
-		gantt           = make([]TimeSlice, 0)  //creates empty slice, TimeSLice
+		schedule = make([][]string, len(processes))
+		gantt    = make([]TimeSlice, 0) //creates empty slice, TimeSLice
 	)
 
 	// Sort processes by priority (highest priority first), and for processes with the same priority, sort by burst duration (shortest first).
@@ -215,6 +219,7 @@ func SJFPrioritySchedule(w io.Writer, title string, processes []Process) {
 	outputGantt(w, gantt)
 	outputSchedule(w, schedule, aveWait, aveTurnaround, aveThroughput)
 }
+
 // function for implementing RRS schedule
 func RRSchedule(w io.Writer, title string, processes []Process) {
 	//defining variables
@@ -301,7 +306,7 @@ func RRSchedule(w io.Writer, title string, processes []Process) {
 	outputTitle(w, title)
 	outputGantt(w, gantt)
 	outputSchedule(w, schedule, aveWait, aveTurnaround, aveThroughput)
-    
+
 }
 
 //endregion
